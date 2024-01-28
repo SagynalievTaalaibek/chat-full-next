@@ -18,7 +18,7 @@ messageRouter.post('/', (req, res, next) => {
             author,
             datetime: (new Date()).toISOString(),
         }
-
+        console.log(newMessage);
         res.send(newMessage);
     } catch (e) {
         next(e);
