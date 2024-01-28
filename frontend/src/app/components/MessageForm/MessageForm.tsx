@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
 import { PostMessage } from '@/types';
@@ -27,7 +27,11 @@ const MessageForm: React.FC<Props> = ({onSubmit, isLoading}) => {
 
   const onChatSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(chat);
+    onSubmit(chat);
+    setChat({
+      message: '',
+      author: ''
+    });
   };
 
   return (
