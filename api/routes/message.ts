@@ -33,9 +33,11 @@ messageRouter.get('/', async (req, res, next) => {
         const datetime = req.query.datetime as string;
         const date = new Date(datetime);
 
-        if (isNaN(date.getDate()) && datetime !== undefined) {
-            return res.status(400).send({error: "Incorrect date"});
-        } else if (datetime) {
+        if (datetime) {
+            if (isNaN(date.getDate())) {
+                return res.status(400).send({error: "Incorrect date"});
+            }
+
             const index = messages.findIndex((message) => message.datetime === datetime);
             if (index === -1) {
                 res.send([]);
